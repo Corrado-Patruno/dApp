@@ -1,0 +1,329 @@
+/* CSS Variables per Light/Dark Mode */
+:root {
+  --bg-color: #eee;
+  --text-color: #333;
+  --note-bg: #fff;
+  --header-bg: #00bcd4;
+  --header-text: #fff;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --modal-bg: #fff;
+  --modal-text: #333;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #e0e0e0;
+  --note-bg: #2d2d2d;
+  --header-bg: #006064;
+  --header-text: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --modal-bg: #2d2d2d;
+  --modal-text: #e0e0e0;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Montserrat", sans-serif;
+  transition: background-color 0.3s ease;
+  height: 100%;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background-color: var(--header-bg);
+  padding: 16px 32px;
+  box-shadow: 0 0 10px 0 var(--shadow-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+/* Container per il contenuto principale con padding */
+.app-content {
+  padding: 0 16px;
+  flex: 1;
+}
+
+/* Grid container per le note */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+header h1 {
+  color: var(--header-text);
+  font-family: "McLaren", cursive;
+  font-weight: 200;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--header-text);
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.1);
+}
+
+footer {
+  text-align: center;
+  width: 100%;
+  padding: 2rem 0;
+  margin-top: auto;
+  flex-shrink: 0;
+}
+
+footer p {
+  color: #ccc;
+}
+.note {
+  background: var(--note-bg);
+  color: var(--text-color);
+  border-radius: 7px;
+  box-shadow: 0 2px 5px var(--shadow-color);
+  padding: 10px;
+  height: 240px; /* Altezza fissa */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.note h1 {
+  font-size: 1.1em;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.note p.note-content {
+  font-size: 0.9em;
+  margin-bottom: 5px;
+  flex: 1;
+  overflow: hidden;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.note-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-top: auto;
+}
+
+.note button {
+  background: none;
+  border: none;
+  color: #00bcd4;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.2s;
+}
+
+.note button:hover {
+  transform: scale(1.1);
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  background: var(--modal-bg);
+  color: var(--modal-text);
+  border-radius: 10px;
+  padding: 30px;
+  min-width: 400px;
+  min-height: 200px;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideIn 0.3s;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    min-width: 90%;
+    max-width: 90%;
+    padding: 20px;
+  }
+}
+
+/* Scrollbar personalizzata per il modale */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #00bcd4;
+  border-radius: 10px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #0097a7;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #00bcd4;
+  font-size: 1.5em;
+}
+
+[data-theme="dark"] .modal-content h2 {
+  color: #4dd0e1;
+}
+
+.modal-text {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.6;
+  color: var(--modal-text);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.modal-close:hover {
+  background: #f0f0f0;
+  color: #333;
+}
+
+form.create-note {
+  position: relative;
+  width: 480px;
+  margin: 30px auto 20px auto;
+  background: var(--note-bg);
+  padding: 15px;
+  border-radius: 7px;
+  box-shadow: 0 1px 5px var(--shadow-color);
+  transition: all 0.3s ease;
+}
+
+form.create-note input,
+form.create-note textarea {
+  color: var(--text-color);
+  background: var(--note-bg);
+}
+form.create-note input,
+form.create-note textarea {
+  width: 100%;
+  border: none;
+  padding: 4px;
+  outline: none;
+  font-size: 1.2em;
+  font-family: inherit;
+  resize: none;
+}
+form.create-note button {
+  position: absolute;
+  right: 18px;
+  bottom: -18px;
+  background: #00bcd4;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  outline: none;
+}
