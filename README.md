@@ -2,7 +2,7 @@
 
 *Per lo sviluppo di applicazioni Web3 su Internet Computer*
 
----
+
 
 ## Requisiti
 
@@ -15,7 +15,7 @@
 
   * PC a 64 bit (System type: x64-based)
 
----
+
 
 ## 1. Installazione di WSL (Windows Subsystem for Linux)
 
@@ -50,7 +50,7 @@
 
    Dovresti vedere **Ubuntu** tra le distribuzioni installate.
 
----
+
 
 ## 2. Installazione di Visual Studio Code e estensioni
 
@@ -66,7 +66,7 @@
 
    L’estensione *Remote – WSL* consente di lavorare direttamente nei file all’interno di Ubuntu/WSL.
 
----
+
 
 ## 3. Installazione di Node.js (tramite Homebrew su Ubuntu/WSL)
 
@@ -124,7 +124,7 @@
 
    Assicurati che `node` sia almeno alla versione **18.x**.
 
----
+
 
 ## 4. Installazione di DFX (SDK Internet Computer)
 
@@ -168,7 +168,7 @@ Aggiungi dfx al PATH:
    dfx --version
    ```
 
----
+
 
 ## 5. Test dell’ambiente con il progetto di esempio “hello”
 
@@ -237,7 +237,7 @@ Aggiungi dfx al PATH:
 
 Se visualizzi la pagina di esempio, l’ambiente è configurato correttamente.
 
----
+
 
 ## 6. Scaricare e avviare il progetto
 
@@ -292,7 +292,7 @@ Assicurati che siano installati e funzionanti:
    npm install
    ```
 
----
+
 
 ## 7. Avvio del progetto in locale
 
@@ -337,7 +337,7 @@ http://localhost:4943/?canisterId={asset_canister_id}
 
 dove `{asset_canister_id}` è l’ID del canister degli asset (visualizzato in output da `dfx deploy`).
 
----
+
 
 ## 8. Comandi utili
 
@@ -359,7 +359,7 @@ dove `{asset_canister_id}` è l’ID del canister degli asset (visualizzato in o
   dfx help
   ```
 
----
+
 
 ## 9. Note importanti
 
