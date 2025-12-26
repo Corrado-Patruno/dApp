@@ -1,0 +1,94 @@
+@startuml CPKeeper
+!theme plain
+left to right direction
+skinparam classAttributeIconSize 0
+skinparam packageStyle rectangle
+title CPKeeper · Client / Frontend / Backend
+
+package "Client · Browser" #FFF1CC {
+  class "index.html" as IndexHTML {
+    +#root container
+    +loader main.jsx
+  }
+
+  class "main.jsx" as MainEntry {
+    +createRoot()
+    +StrictMode()
+    +render(<App/>)
+  }
+
+  class "index.scss" as MainStyles {
+    +theme variables
+    +grid layout
+  }
+}
+
+package "Frontend · React" #E6F3FF {
+  class App {
+    -notes: Note[]
+    -isDarkMode: Bool
+    +fetchNotes()
+    +addNote()
+    +deleteNote()
+    +toggleTheme()
+  }
+
+  class Header {
+    +isDarkMode: Bool
+    +onToggleTheme()
+  }
+
+  class ThemeToggle {
+    +isDark: Bool
+    +onToggle()
+  }
+
+  class CreateArea {
+    +handleChange()
+    +submitNote()
+  }
+
+  class Note {
+    +id: Nat
+    +title: Text
+    +content: Text
+    +handleDelete()
+  }
+
+  class Modal {
+    +isOpen: Bool
+    +onClose()
+  }
+
+  class Footer {
+    +renderYear()
+  }
+}
+
+package "Backend · Motoko" #E6FFE6 {
+  class DKeeperBackend {
+    -notes: List<Note>
+    +createNote()
+    +readNotes()
+    +removeNote()
+  }
+}
+
+IndexHTML o-- MainEntry : mount #root
+MainEntry --> App : render()
+MainEntry --> MainStyles : import
+
+App *-- Header
+App *-- CreateArea
+App *-- Note
+App *-- Footer
+Header *-- ThemeToggle
+Note *-- Modal
+
+CreateArea -.-> App : onAdd
+Note -.-> App : onDelete
+ThemeToggle -.-> App : onToggle
+
+App --> DKeeperBackend : canister API
+
+@enduml
