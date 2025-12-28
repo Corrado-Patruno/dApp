@@ -3,9 +3,9 @@
 left to right direction
 skinparam classAttributeIconSize 0
 skinparam packageStyle rectangle
-title CPKeeper · Client / Frontend / Backend
+title CPKeeper · Web Client / Frontend / Backend
 
-package "Client · Browser" #FFF1CC {
+package "Web Client · Entry Point" #FFF1CC {
   class "index.html" as IndexHTML {
     +#root container
     +loader main.jsx

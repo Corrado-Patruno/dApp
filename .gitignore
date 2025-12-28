@@ -23,3 +23,6 @@ dist/
 
 # environment variables
 .env
+# performance tests documentation
+performance-tests/README.md
+performance-tests/docs/
