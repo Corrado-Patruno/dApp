@@ -4,7 +4,7 @@
 
         // CUSTOM CONFIGURATION: Allow external images from transparenttextures.com
         "headers": {
-            "Content-Security-Policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; img-src 'self' data: https://www.transparenttextures.com https:; connect-src 'self' http://localhost:* http://127.0.0.1:* https://*.ic0.app https://*.icp0.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com"
+            "Content-Security-Policy": "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:; img-src 'self' data: https://www.transparenttextures.com https:; connect-src 'self' http://localhost:* http://127.0.0.1:* https://ic0.app https://*.ic0.app https://icp0.io https://*.icp0.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com"
         },
         "allow_raw_access": true,
 

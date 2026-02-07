@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import Modal from "./Modal";
 
@@ -18,6 +19,11 @@ function Note(props) {
     props.onDelete(props.id);
   }
 
+  function handleEdit() {
+    console.log("✏️ [handleEdit] Note props:", props.note);
+    props.onEdit(props.note);
+  }
+
   function openModal() {
     setIsModalOpen(true);
   }
@@ -34,6 +40,9 @@ function Note(props) {
         <div className="note-buttons">
           <button onClick={openModal} className="view-button" title="Leggi nota completa">
             <VisibilityIcon />
+          </button>
+          <button onClick={handleEdit} className="edit-button" title="Modifica nota">
+            <EditIcon />
           </button>
           <button onClick={handleDelete} className="delete-button" title="Elimina nota">
             <DeleteIcon />

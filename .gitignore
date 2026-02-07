@@ -23,6 +23,21 @@ dist/
 
 # environment variables
 .env
+.env.local
+
+# log files
+*.log
+npm-debug.log*
+yarn-error.log*
+
+# python virtual environments
+venv/
+env/
+
+# build and cache
+build/
+.next/
+
 # performance tests documentation
 performance-tests/README.md
 performance-tests/docs/
