@@ -41,3 +41,6 @@ build/
 # performance tests documentation
 performance-tests/README.md
 performance-tests/docs/
+
+# daily work logs (for personal reference only)
+DAILY_LOG.md

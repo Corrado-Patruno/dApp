@@ -1,4 +1,7 @@
-/* CSS Variables per Light/Dark Mode */
+/* ============================================================================
+   1. THEME & VARIABLES
+   Selettori: :root, [data-theme="dark"]
+   ============================================================================ */
 :root {
   --bg-color: #eee;
   --text-color: #333;
@@ -21,6 +24,10 @@
   --modal-text: #e0e0e0;
 }
 
+/* ============================================================================
+   2. GLOBAL STYLES
+   Selettori: *, html, body, #root, .app-wrapper
+   ============================================================================ */
 * {
   padding: 0;
   margin: 0;
@@ -28,7 +35,7 @@
 }
 
 html {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Open Sans", sans-serif;
   transition: background-color 0.3s ease;
   height: 100%;
 }
@@ -57,45 +64,38 @@ body {
   min-height: 100vh;
 }
 
+/* ============================================================================
+   3. HEADER SECTION
+   Selettori: header, header h1, .header-right, .theme-toggle, .notes-counter,
+              .clear-notes-button, .header-search*, .search-mobile-btn
+   ============================================================================ */
 header {
   background-color: var(--header-bg);
-  padding: 16px 32px;
+  padding: 12px 24px;
   box-shadow: 0 0 10px 0 var(--shadow-color);
   display: flex;
-  justify-content: space-between;
   align-items: center;
   transition: background-color 0.3s ease;
   width: 100%;
 }
 
-/* Container per il contenuto principale con padding */
-.app-content {
-  padding: 0 16px;
-  flex: 1;
-}
-
-/* Grid container per le note */
-.notes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
-  margin: 20px 0;
-}
-
 header h1 {
   color: var(--header-text);
-  font-family: "McLaren", cursive;
-  font-weight: 200;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.4em;
+  font-weight: 400;
   display: flex;
   align-items: center;
   gap: 10px;
+  margin: 0;
+  margin-right: 8px;
 }
 
 /* Theme Toggle Button */
 .theme-toggle {
   background: rgba(255, 255, 255, 0.2);
   border: none;
-  border-radius: 50%;
+  border-radius: 5px;
   width: 40px;
   height: 40px;
   display: flex;
@@ -104,11 +104,108 @@ header h1 {
   cursor: pointer;
   color: var(--header-text);
   transition: all 0.3s ease;
+  font-size: 1.1em;
 }
 
 .theme-toggle:hover {
   background: rgba(255, 255, 255, 0.3);
   transform: scale(1.1);
+}
+
+/* Header Right Container */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+/* Notes Counter */
+.notes-counter {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 5px;
+  padding: 0 12px;
+  color: var(--header-text);
+  font-size: 0.95em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 40px;
+}
+
+.counter-number {
+  font-weight: 500;
+  font-size: 1.05em;
+}
+
+.counter-text {
+  display: inline;
+}
+
+/* Clear Notes Button */
+.clear-notes-button {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  border-radius: 5px;
+  padding: 0 12px;
+  color: var(--header-text);
+  cursor: pointer;
+  font-size: 0.95em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.3s ease;
+  height: 40px;
+  margin-left: 0 !important;
+}
+
+.clear-text {
+  display: inline;
+}
+
+.clear-notes-button:hover {
+  background: rgba(255, 100, 100, 0.3);
+  transform: scale(1.05);
+}
+
+/* ============================================================================
+   4. MAIN CONTENT SECTION
+   Selettori: .app-content, .search-active-message
+   ============================================================================ */
+.app-content {
+  padding: 0 16px;
+  flex: 1;
+}
+
+.search-active-message {
+  background: rgba(0, 188, 212, 0.1);
+  border-left: 4px solid #00bcd4;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.95em;
+  font-weight: 400;
+  color: #00bcd4;
+  text-align: center;
+}
+
+/* ============================================================================
+   5. NOTES GRID & CARDS
+   Selettori: .notes-grid, .note, .note h1, .note p.note-content, .note-buttons,
+              .note button, .edit-button, .delete-button
+   ============================================================================ */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
 }
 
 footer {
@@ -120,15 +217,19 @@ footer {
 }
 
 footer p {
-  color: #ccc;
+  color: #bbb;
+  font-size: 0.85em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 300;
 }
+
 .note {
   background: var(--note-bg);
   color: var(--text-color);
   border-radius: 7px;
   box-shadow: 0 2px 5px var(--shadow-color);
   padding: 10px;
-  height: 240px; /* Altezza fissa */
+  height: 240px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -137,9 +238,9 @@ footer p {
 
 .note h1 {
   font-size: 1.1em;
-  font-family: "McLaren", cursive;
-  font-weight: 200;
-  margin-bottom: 6px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  margin-bottom: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -147,11 +248,14 @@ footer p {
 
 .note p.note-content {
   font-size: 0.9em;
-  margin-bottom: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  margin-bottom: 8px;
   flex: 1;
   overflow: hidden;
-  word-break: break-word;
-  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .note-buttons {
@@ -170,7 +274,7 @@ footer p {
   cursor: pointer;
   outline: none;
   transition: transform 0.2s;
-  font-family: "McLaren", cursive;
+  font-family: "Open Sans", sans-serif;
 }
 
 .note button:hover {
@@ -185,7 +289,11 @@ footer p {
   color: #ff6b6b !important;
 }
 
-/* Modal Styles */
+/* ============================================================================
+   6. MODAL STYLES
+   Selettori: .modal-overlay, .modal-content, .modal-text, .modal-close,
+              @keyframes fadeIn, @keyframes slideIn
+   ============================================================================ */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -220,11 +328,25 @@ footer p {
   animation: slideIn 0.3s;
 }
 
+.modal-note-view {
+  min-height: 400px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
 @media (max-width: 768px) {
   .modal-content {
     min-width: 90%;
     max-width: 90%;
     padding: 20px;
+  }
+
+  .note-view-header {
+    padding-right: 20px;
+  }
+
+  .btn-copy {
+    padding: 4px;
   }
 }
 
@@ -262,8 +384,8 @@ footer p {
   margin-bottom: 20px;
   color: #00bcd4;
   font-size: 1.5em;
-  font-family: "McLaren", cursive;
-  font-weight: 200;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
 }
 
 [data-theme="dark"] .modal-content h2 {
@@ -274,7 +396,9 @@ footer p {
   white-space: pre-wrap;
   word-wrap: break-word;
   line-height: 1.6;
-  color: var(--modal-text);
+  font-size: 0.95em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
 }
 
 .modal-close {
@@ -300,6 +424,11 @@ footer p {
   color: #333;
 }
 
+/* ============================================================================
+   7. CREATE FORM SECTION
+   Selettori: form.create-note, form.create-note input, form.create-note textarea,
+              form.create-note button
+   ============================================================================ */
 form.create-note {
   position: relative;
   width: 480px;
@@ -315,9 +444,6 @@ form.create-note input,
 form.create-note textarea {
   color: var(--text-color);
   background: var(--note-bg);
-}
-form.create-note input,
-form.create-note textarea {
   width: 100%;
   border: none;
   padding: 4px;
@@ -333,15 +459,27 @@ form.create-note button {
   background: #00bcd4;
   color: #fff;
   border: none;
-  border-radius: 50%;
+  border-radius: 8px;
   width: 36px;
   height: 36px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   outline: none;
+  transition: background 0.2s ease;
 }
 
-/* ConfirmModal Styles */
+form.create-note button:hover {
+  background: #0097a7;
+}
+
+form.create-note button:active {
+  background: #0097a7;
+}
+
+/* ============================================================================
+   8. CONFIRM MODAL SECTION
+   Selettori: .confirm-modal-buttons, .btn-confirm, .btn-dangerous
+   ============================================================================ */
 .confirm-modal-buttons {
   display: flex;
   gap: 12px;
@@ -354,9 +492,9 @@ form.create-note button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1em;
-  font-family: "McLaren", cursive;
-  font-weight: 200;
+  font-size: 0.95em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
   transition: all 0.2s ease;
   background: #4caf50;
   color: #fff;
@@ -375,54 +513,11 @@ form.create-note button {
   background: #da190b;
 }
 
-/* Clear Notes Button */
-.clear-notes-button {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  border-radius: 5px;
-  padding: 8px 12px;
-  color: var(--header-text);
-  cursor: pointer;
-  font-size: 1em;
-  font-family: "McLaren", cursive;
-  font-weight: 200;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.3s ease;
-  margin-left: 12px;
-}
-
-.clear-notes-button:hover {
-  background: rgba(255, 100, 100, 0.3);
-  transform: scale(1.05);
-}
-
-@media (max-width: 768px) {
-  .clear-notes-button {
-    padding: 6px 10px;
-    font-size: 0.8em;
-  }
-
-  .confirm-modal-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .btn-confirm {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .clear-notes-button {
-    padding: 5px 8px;
-    font-size: 0.75em;
-  }
-}
-
-/* Mobile Responsive Styles */
-@media (max-width: 768px) {
+/* ============================================================================
+   12. RESPONSIVE DESIGN - MOBILE STYLES
+   Media query: @media (max-width: 830px)
+   ============================================================================ */
+@media (max-width: 830px) {
   header {
     padding: 12px 16px;
   }
@@ -431,9 +526,68 @@ form.create-note button {
     font-size: 1.5em;
   }
 
+  .header-right {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .header-search {
+    display: none;
+    width: auto;
+  }
+
+  .search-mobile-btn {
+    display: flex;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 5px;
+    color: var(--header-text);
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: all 0.2s ease;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+   
+  }
+
+  .search-mobile-btn:hover {
+    color: #00bcd4;
+    transform: scale(1.1);
+  }
+
+  .notes-counter {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0 12px;
+    border-radius: 5px;
+    height: 40px;
+  }
+
+  .counter-text {
+    display: none;
+  }
+
+  .clear-notes-button {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0 12px;
+    border-radius: 5px;
+    height: 40px;
+  }
+
+  .clear-text {
+    display: none;
+  }
+
   .theme-toggle {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
   }
 
   .app-content {
@@ -471,6 +625,7 @@ form.create-note button {
 
   .note p.note-content {
     font-size: 0.85em;
+    white-space: pre-wrap;
   }
 
   .note button {
@@ -479,65 +634,11 @@ form.create-note button {
   }
 }
 
-@media (max-width: 480px) {
-  header {
-    padding: 10px 12px;
-  }
-
-  header h1 {
-    font-size: 1.3em;
-    gap: 8px;
-  }
-
-  .app-content {
-    padding: 0 8px;
-  }
-
-  .notes-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin: 12px 0;
-  }
-
-  form.create-note {
-    width: calc(100% - 20px);
-    margin: 16px auto;
-    padding: 10px;
-  }
-
-  form.create-note input,
-  form.create-note textarea {
-    font-size: 1em;
-  }
-
-  form.create-note button {
-    right: 10px;
-    bottom: -14px;
-    width: 30px;
-    height: 30px;
-    font-size: 18px;
-  }
-
-  .note {
-    height: 200px;
-    padding: 6px;
-  }
-
-  .note h1 {
-    font-size: 0.95em;
-    margin-bottom: 4px;
-  }
-
-  .note p.note-content {
-    font-size: 0.8em;
-  }
-
-  footer p {
-    font-size: 0.85em;
-  }
-}
-
-/* Edit Modal Styles */
+/* ============================================================================
+   9. EDIT MODAL SECTION
+   Selettori: .edit-modal, .edit-form, .edit-title-input, .edit-content-textarea,
+              .edit-modal-buttons, .btn-save
+   ============================================================================ */
 .edit-modal {
   min-width: 400px;
   min-height: 200px;
@@ -557,8 +658,9 @@ form.create-note button {
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 10px;
-  font-family: inherit;
-  font-size: 1em;
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.95em;
+  font-weight: 400;
   color: var(--modal-text);
   background: var(--note-bg);
   outline: none;
@@ -572,14 +674,16 @@ form.create-note button {
 }
 
 .edit-title-input {
-  font-size: 1.2em;
+  font-size: 1.1em;
+  font-weight: 500;
   min-height: 35px;
 }
 
 .edit-content-textarea {
   resize: vertical;
   min-height: 150px;
-  line-height: 1.4;
+  line-height: 1.5;
+  white-space: pre-wrap;
 }
 
 .edit-modal-buttons {
@@ -596,9 +700,9 @@ form.create-note button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1em;
-  font-family: "McLaren", cursive;
-  font-weight: 200;
+  font-size: 0.95em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -621,17 +725,211 @@ form.create-note button {
   border-color: #00bcd4;
 }
 
-@media (max-width: 600px) {
-  .edit-modal {
-    min-width: 85vw;
-    max-width: 85vw;
+
+
+.search-icon {
+  color: var(--header-text);
+  font-size: 1.1em;
+  flex-shrink: 0;
+}
+
+/* Desktop styles for Header Search - wrappato in media query */
+@media (min-width: 831px) {
+  .header-search {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid transparent;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    width: 280px;
+    position: relative;
+    height: 40px;
+    box-sizing: border-box;
   }
 
-  .edit-form {
-    gap: 10px;
+  .header-search:focus-within {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.4);
   }
 
-  .btn-save {
-    width: 100%;
+  .header-search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 4px 0;
+    font-size: 0.9em;
+    font-family: "Open Sans", sans-serif;
+    color: var(--header-text);
+    outline: none;
+    padding-right: 30px;
+  }
+
+  .header-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .search-mobile-btn {
+    display: none;
   }
 }
+
+.search-clear {
+  background: none;
+  border: none;
+  color: var(--header-text);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+  position: absolute;
+  right: 8px;
+}
+
+.search-clear:hover {
+  color: #00bcd4;
+}
+
+/* ============================================================================
+   10. SEARCH MODAL SECTION
+   Selettori: .search-modal-overlay, .search-modal-dropdown, .search-modal-header,
+              .search-modal-input, .search-modal-close
+   ============================================================================ */
+.search-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+}
+
+.search-modal-dropdown {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: var(--modal-bg);
+  padding: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10001;
+  border-radius: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+.search-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.search-modal-input {
+  flex: 1;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  padding: 10px 35px 10px 10px;
+  border-radius: 5px;
+  font-size: 1em;
+  font-family: "Open Sans", sans-serif;
+  color: var(--text-color);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-modal-input:focus {
+  border-color: #00bcd4;
+}
+
+.search-modal-input::placeholder {
+  color: var(--input-border);
+}
+
+.search-modal-close {
+  background: none;
+  border: none;
+  color: var(--input-border);
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 300;
+  position: absolute;
+  right: 8px;
+  transition: color 0.2s ease;
+  line-height: 1;
+}
+
+.search-modal-close:hover {
+  color: #00bcd4;
+}
+
+/* ============================================================================
+   11. NOTE VIEW MODAL SECTION
+   Selettori: .note-view-header, .note-view-header h2, .btn-copy, .btn-copy.copied,
+              .note-view-timestamp, .note-view-content
+   ============================================================================ */
+.note-view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.note-view-header h2 {
+  flex: 1;
+  margin: 0;
+  font-size: 1.4em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+.btn-copy {
+  background: none;
+  border: none;
+  color: #00bcd4;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.btn-copy:hover {
+  color: #00e5ff;
+  transform: scale(1.15);
+}
+
+.btn-copy.copied {
+  color: #4caf50;
+}
+
+.note-view-timestamp {
+  font-size: 0.85em;
+  color: var(--input-border);
+  margin: 0 0 20px 0;
+  font-style: italic;
+}
+
+.note-view-content {
+  flex: 1;
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--text-color);
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-y: auto;
+}
+
+
+
+
+

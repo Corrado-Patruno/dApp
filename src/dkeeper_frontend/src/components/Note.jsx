@@ -20,7 +20,6 @@ function Note(props) {
   }
 
   function handleEdit() {
-    console.log("✏️ [handleEdit] Note props:", props.note);
     props.onEdit(props.note);
   }
 
@@ -53,8 +52,7 @@ function Note(props) {
       <Modal 
         isOpen={isModalOpen}
         onClose={closeModal}
-        title={props.title}
-        content={props.content}
+        note={props.note}
       />
     </>
   );

@@ -23,12 +23,22 @@ function CreateArea(props) {
   }
 
   function submitNote(event) {
-    props.onAdd(note);
-    setNote({
-      title: "",
-      content: ""
-    });
     event.preventDefault();
+    if (note.title.trim() || note.content.trim()) {
+      props.onAdd(note);
+      setNote({
+        title: "",
+        content: ""
+      });
+      setExpanded(false);
+    }
+  }
+
+  function handleKeyPress(event) {
+    // Ctrl+Enter o Cmd+Enter per submit
+    if ((event.ctrlKey || event.metaKey) && event.key === "Enter") {
+      submitNote(event);
+    }
   }
 
   function expand() {
@@ -36,32 +46,31 @@ function CreateArea(props) {
   }
 
   return (
-    <div>
-      <form className="create-note">
-        {isExpanded && (
-          <input
-            name="title"
-            onChange={handleChange}
-            value={note.title}
-            placeholder="Title"
-          />
-        )}
-
-        <textarea
-          name="content"
-          onClick={expand}
+    <form className="create-note" onSubmit={submitNote}>
+      {isExpanded && (
+        <input
+          name="title"
           onChange={handleChange}
-          value={note.content}
-          placeholder="Take a note..."
-          rows={isExpanded ? 3 : 1}
+          value={note.title}
+          placeholder="Title"
         />
-        <Zoom in={isExpanded}>
-          <Fab onClick={submitNote}>
-            <AddIcon />
-          </Fab>
-        </Zoom>
-      </form>
-    </div>
+      )}
+
+      <textarea
+        name="content"
+        onClick={expand}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        value={note.content}
+        placeholder="Take a note..."
+        rows={isExpanded ? 3 : 1}
+      />
+      <Zoom in={isExpanded}>
+        <Fab type="submit">
+          <AddIcon />
+        </Fab>
+      </Zoom>
+    </form>
   );
 }
 

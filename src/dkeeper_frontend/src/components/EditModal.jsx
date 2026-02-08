@@ -29,7 +29,6 @@ function EditModal({ isOpen, note, onSave, onCancel }) {
 
   function handleSave(event) {
     event.preventDefault();
-    console.log("💾 [EditModal] Salvataggio nota con ID:", note.id);
     onSave(note.id, editedNote);
   }
 
